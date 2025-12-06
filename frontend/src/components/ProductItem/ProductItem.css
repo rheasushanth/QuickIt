@@ -1,0 +1,142 @@
+.product-item {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 0.6rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 220px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+  transition: transform 120ms ease;
+}
+
+.product-item:hover {
+  transform: translateY(-4px);
+}
+
+.product-item__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem 0;
+  flex: 0 0 auto;
+}
+
+.product-item__image img {
+  max-width: 100%;
+  max-height: 120px;
+  object-fit: contain;
+  display: block;
+}
+
+.product-item__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.product-item__name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #222;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-item__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.product-item__price {
+  color: #1b7a5a;
+  font-weight: 700;
+}
+
+/* Add button (shown when quantity === 0) */
+.product-item__add {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #1b7a5a;
+  color: #fff;
+  border: none;
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-height: 34px;
+  white-space: nowrap;
+}
+
+.product-item__add:hover {
+  opacity: 0.95;
+}
+
+.product-item__add-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* Counter shown when quantity > 0 */
+.product-item__counter {
+  display: inline-flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #e6e6e6;
+  overflow: hidden;
+}
+
+.product-item__counter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: #1b7a5a;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0;
+}
+
+.product-item__counter-btn--decrease {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.product-item__counter-value {
+  min-width: 36px;
+  text-align: center;
+  font-weight: 700;
+  color: #1b7a5a;
+  padding: 0.25rem 0.5rem;
+  background: #fff;
+}
+
+/* plus icon inside counter (if using add_icon_green) */
+.product-item__counter-plus-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* responsive: hide text label on very small screens */
+@media (max-width: 420px) {
+  .product-item__add-text {
+    display: none;
+  }
+}

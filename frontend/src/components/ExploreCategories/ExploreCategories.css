@@ -1,0 +1,199 @@
+/* Load Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --muted: #6b7280;
+  --title: #111827;
+  --card-bg: #eef6ff;
+  --gap: 2.2rem;
+  --accent: #2ecc71;
+  --max-width: 1400px;
+
+  /* sizes (tweak these to make images larger/smaller) */
+  --img-desktop: 160px;
+  --img-desktop-medium: 140px;
+  --img-tablet: 120px;
+  --img-mobile: 100px;
+}
+
+.explore-categories {
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  max-width: var(--max-width);
+  margin: 32px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--title);
+}
+
+.explore-categories h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(20px, 2.6vw, 28px);
+}
+
+.explore-categories-text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* Desktop-first grid: 5 columns on wide screens */
+.explore-categories-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--gap);
+  align-items: start;
+  justify-items: center;
+  padding: 20px 0;
+  overflow: visible;
+}
+
+/* Hide scrollbar for WebKit and Firefox */
+.explore-categories-list::-webkit-scrollbar {
+  display: none;
+}
+.explore-categories-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* each item */
+.explore-categories-list-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 180ms ease;
+  width: 100%;
+  max-width: 220px;
+  box-sizing: border-box;
+}
+
+/* image style */
+.explore-img {
+  width: var(--img-desktop);
+  height: var(--img-desktop);
+  object-fit: contain;
+  background: var(--card-bg);
+  padding: 14px;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(15, 40, 70, 0.06);
+  transition: transform 160ms ease, box-shadow 160ms ease, border 160ms ease;
+  display: block;
+}
+
+/* label */
+.explore-categories-item-title {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--title);
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 0 6px;
+}
+
+/* hover/focus */
+.explore-categories-list-item:hover,
+.explore-categories-list-item:focus {
+  transform: translateY(-6px);
+}
+.explore-categories-list-item:focus {
+  outline: none;
+}
+
+/* active/selected state (strong visible style) */
+.explore-img.active,
+.explore-categories-list-item.selected .explore-img {
+  border: 3px solid var(--accent);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 22px 40px rgba(46, 204, 113, 0.12);
+}
+
+/* hr */
+.explore-categories hr {
+  margin: 12px 0 0;
+  height: 2px;
+  background-color: #e8e8e8;
+  border: none;
+}
+
+/* Responsive breakpoints */
+/* Large screens - keep 5 columns but give more gap */
+@media (min-width: 1600px) {
+  .explore-categories-list {
+    gap: 3.6rem;
+  }
+  .explore-img {
+    width: calc(var(--img-desktop) + 20px);
+    height: calc(var(--img-desktop) + 20px);
+  }
+}
+
+/* Medium desktop / laptop: 5 columns but slightly smaller images */
+@media (min-width: 1000px) and (max-width: 1599px) {
+  .explore-categories-list {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2.6rem;
+  }
+  .explore-img {
+    width: var(--img-desktop-medium);
+    height: var(--img-desktop-medium);
+  }
+}
+
+/* Tablet: 4 columns */
+@media (min-width: 800px) and (max-width: 999px) {
+  .explore-categories-list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .explore-img {
+    width: var(--img-tablet);
+    height: var(--img-tablet);
+  }
+}
+
+/* Small tablet / large phone: 3 columns */
+@media (min-width: 600px) and (max-width: 799px) {
+  .explore-categories-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+  }
+  .explore-img {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+/* Mobile: switch to horizontal scroll with spaced items for better UX on narrow screens */
+@media (max-width: 599px) {
+  .explore-categories-list {
+    display: flex;
+    gap: 1.1rem;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .explore-categories-list-item {
+    flex: 0 0 auto;
+    width: 140px;
+    max-width: 140px;
+  }
+
+  .explore-img {
+    width: var(--img-mobile);
+    height: var(--img-mobile);
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .explore-categories-item-title {
+    font-size: 0.98rem;
+  }
+}

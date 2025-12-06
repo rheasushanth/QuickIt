@@ -1,0 +1,322 @@
+/* Poppins for the whole navbar */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root{
+  --padding-vertical: 24px;
+  --padding-horizontal: 80px;
+  --logo-width: 170px;
+  --accent-color: #2ebf4f;
+  --search-height: 50px;
+  --search-border: 3px;
+  --menu-gap: 40px;
+  --text-color: #111;
+}
+
+/* base reset */
+* { box-sizing: border-box; }
+
+.navbar{
+  display: grid;
+  /* ensure left and right columns size to their content and center grows but is constrained */
+  grid-template-columns: auto minmax(320px, 1fr) auto;
+  align-items: center; /* ensures everything sits on same horizontal line */
+  padding: var(--padding-vertical) var(--padding-horizontal);
+  column-gap: 28px;
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #fff;
+}
+
+/* Left group (logo + menu) */
+.navbar-left{
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  justify-self: start;
+}
+
+/* Logo */
+.logo{
+  width: var(--logo-width);
+  height: auto;
+  display: block;
+  object-fit: contain;
+  flex: 0 0 auto;
+  margin: 0;
+}
+
+/* Menu */
+.navbar-menu{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: var(--menu-gap);
+  align-items: center;
+}
+
+.nav-item{
+  font-family: 'Poppins', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--text-color);
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
+  padding: 6px 0;
+}
+
+/* Center: the search bar */
+.navbar-center{
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* IMPORTANT: limit the search width so it doesn't push the cart off-screen */
+.search-wrapper{
+  width: 100%;
+  max-width: 640px;    /* reduced from 760 to keep cart visible on narrower viewports */
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Input styling */
+.search-input{
+  flex: 1 1 auto;
+  padding: 12px 16px;
+  height: var(--search-height);
+  border: var(--search-border) solid var(--accent-color);
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  font-size: 16px;
+  font-family: 'Poppins', Arial, sans-serif;
+  outline: none;
+  color: #333;
+  background: #fff;
+  box-shadow: none;
+}
+
+/* Search button */
+.search-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: var(--search-height);
+  padding: 0;
+  background: linear-gradient(180deg, #6ae86a 0%, #3ecc4a 100%);
+  border: var(--search-border) solid var(--accent-color);
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
+
+.search-icon{
+  width: 22px;
+  height: 22px;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Right column: cart + sign-in */
+.navbar-right{
+  display: flex;
+  align-items: center;
+  gap: 12px;            /* reduce gap so cart is visually nearer the search */
+  justify-self: end;
+  flex: 0 0 auto;      /* never shrink */
+  transform: translateX(-18px); /* nudge the whole right-group left toward the center */
+}
+
+/* Cart button styling - ensure it is visible and not shrinking */
+.cart-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  margin-right: 6px;   /* small spacing so cart doesn't touch Sign In */
+}
+/* larger cart icon per request */
+.cart-icon{
+  width: 48px; /* increased size */
+  height: auto;
+  display: block;
+}
+
+/* Sign-in as button */
+.signin-btn{
+  font-family: 'Poppins', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #3b3b3b;
+  color: #111;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.signin-btn:hover{
+  background: #f5f5f5;
+  transform: translateY(-1px);
+}
+
+/* make images behave */
+.navbar img{ max-width: 100%; height: auto; display: block; }
+
+/* Responsive adjustments */
+@media (max-width: 980px){
+  :root{ --padding-horizontal: 24px; --logo-width: 140px; }
+  .navbar{ column-gap: 12px; padding: 18px var(--padding-horizontal); }
+  .nav-item{ font-size: 18px; }
+  .search-wrapper{ max-width: 520px; min-width: 180px; }
+  .search-input{ height: 44px; }
+  .search-btn{ height: 44px; width: 48px; }
+  .signin-btn{ height: 36px; padding: 8px 12px; }
+  .navbar-right{ transform: translateX(-12px); } /* slightly less nudge on smaller screens */
+  .cart-icon{ width: 44px; } /* slightly smaller on smaller screens */
+}
+
+@media (max-width: 640px){
+  .navbar{
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    row-gap: 8px;
+    padding: 12px 16px;
+  }
+  .navbar-left{ order: 1; gap: 12px; }
+  .navbar-right{ order: 2; justify-self: end; transform: none; }
+  .navbar-center{ order: 3; justify-self: stretch; width: 100%; }
+  .logo{ width: 140px; }
+  .navbar-menu{ gap: 16px; }
+  .nav-item{ font-size: 16px; }
+  .search-wrapper{ min-width: 0; max-width: none; }
+  .cart-icon{ width: 40px; }
+}
+/* Cart badge */
+.cart-btn {
+  position: relative;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  box-shadow: 0 2px 6px rgba(255, 107, 107, 0.4);
+}
+
+/* Profile Menu Styles */
+.profile-menu {
+  position: relative;
+}
+
+.profile-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  min-width: 200px;
+  z-index: 1000;
+  margin-top: 8px;
+  border: 1px solid #e5e5e5;
+}
+
+.profile-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: 1px solid #e5e5e5;
+  border-bottom: none;
+  border-right: none;
+  transform: rotate(45deg);
+}
+
+.profile-info {
+  margin-bottom: 15px;
+}
+
+.profile-info p {
+  margin: 0;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.profile-info p:first-child {
+  font-weight: 600;
+  color: #2d5aa0;
+}
+
+.profile-dropdown hr {
+  border: none;
+  height: 1px;
+  background: #e5e5e5;
+  margin: 15px 0;
+}
+
+.profile-dropdown button {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0;
+  width: 100%;
+  text-align: left;
+  transition: color 0.2s;
+}
+
+.profile-dropdown button:hover {
+  color: #2d5aa0;
+}
